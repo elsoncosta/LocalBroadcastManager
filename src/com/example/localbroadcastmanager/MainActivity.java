@@ -5,6 +5,9 @@ import android.os.Bundle;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.example.fragment.FragmentDetalhes;
+import com.example.fragment.FragmentLista;
+import com.example.fragment.TabFragmentListener;
 
 public class MainActivity extends SherlockFragmentActivity {
 
@@ -23,6 +26,8 @@ public class MainActivity extends SherlockFragmentActivity {
         setContentView(R.layout.activity_main);
         
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayShowTitleEnabled(false);
         
         Tab tabLista = actionBar.newTab().setText("Lista");
         tabLista.setTabListener(new TabFragmentListener(this, new FragmentLista()));
@@ -31,7 +36,9 @@ public class MainActivity extends SherlockFragmentActivity {
         Tab tabDetalhes = actionBar.newTab().setText("Detalhes");
         tabDetalhes.setTabListener(new TabFragmentListener(this, new FragmentDetalhes()));
         
-        actionBar.setSelectedNavigationItem(tabIdx);
+        actionBar.addTab(tabLista);
+        actionBar.addTab(tabDetalhes);
+        
         if (savedInstanceState != null) 
         {
 	        tabIdx = savedInstanceState.getInt("tabIdx");
@@ -41,7 +48,6 @@ public class MainActivity extends SherlockFragmentActivity {
         {
             actionBar.setSelectedNavigationItem(tabIdx);
         }
-        
     } 
 	
 	@Override

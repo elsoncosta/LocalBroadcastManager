@@ -1,6 +1,4 @@
-package com.example.localbroadcastmanager;
-
-
+package com.example.fragment;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -8,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.ActionBar.TabListener;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.example.localbroadcastmanager.R;
 
 
 
@@ -25,12 +24,14 @@ public class TabFragmentListener implements TabListener
     @Override
     public void onTabSelected(Tab tab, FragmentTransaction ft) 
     {
-        if(activity.getSupportFragmentManager().findFragmentByTag(fragment.getClass().getName())==null){
+        if(activity.getSupportFragmentManager().findFragmentByTag(fragment.getClass().getName())==null)
+        {
             ft.add(R.id.content_frame,fragment, fragment.getClass().getName());             
-	    }else{
-	            
-	            fragment = activity.getSupportFragmentManager().findFragmentByTag(fragment.getClass().getName());
-	            ft.attach(fragment);
+	    }
+        else
+	    {            
+            fragment = activity.getSupportFragmentManager().findFragmentByTag(fragment.getClass().getName());
+            ft.attach(fragment);
 	    }
     }
 
@@ -39,7 +40,7 @@ public class TabFragmentListener implements TabListener
     {
     	if(activity.getSupportFragmentManager().findFragmentByTag(fragment.getClass().getName())!=null) 
         {
-                ft.remove(fragment);
+    		ft.remove(fragment);
         }
     }
 
